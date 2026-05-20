@@ -9,55 +9,38 @@ import { useState, useEffect, useRef, useCallback } from "react";
 //  sub: smaller muted line below the quote
 // ════════════════════════════════════════════════════════════════
 const SLIDES = [
-  {
-    id: "1",
-    date: "JUN 2024",
-    quote: '"The day everything started."',
-    sub: "We had no idea what was ahead.",
-    src: "/media/photo1.jpg",         // ← replace with your photo
-  },
-  {
-    id: "2",
-    date: "AUG 2024",
-    quote: '"Every moment with you is a memory."',
-    sub: "And this one is my favourite.",
-    src: "/media/photo2.jpg",         // ← replace with your photo
-  },
-  {
-    id: "3",
-    date: "OCT 2024",
-    quote: '"Some days just feel like magic."',
-    sub: "This was one of them.",
-    src: "/media/photo3.jpg",
-  },
-  {
-    id: "4",
-    date: "DEC 2024",
-    quote: '"You make every room brighter."',
-    sub: "Always have, always will.",
-    src: "/media/photo4.jpg",
-  },
-  {
-    id: "5",
-    date: "FEB 2025",
-    quote: '"Adventures are better with you."',
-    sub: "Here's proof.",
-    src: "/media/photo5.jpg",
-  },
-  {
-    id: "6",
-    date: "APR 2025",
-    quote: '"Laughing until it hurts."',
-    sub: "No context needed.",
-    src: "/media/photo6.jpg",
-  },
-  {
-    id: "7",
-    date: "MAY 2025",
-    quote: '"The best is yet to come."',
-    sub: "Happy Birthday, Drisha. 🎂",
-    src: "/media/photo7.jpg",
-  },
+  { id: "1", date: "SEP 2024", quote: '"The day everything started."', sub: "A memory worth everything.", src: "/media/photo-1.jpg" },
+  { id: "2", date: "SEP 2024", quote: '"The beginning of us."', sub: "Still feels magical.", src: "/media/photo-2.jpg" },
+  { id: "3", date: "NOV 2024", quote: '"A memory in motion."', sub: "And one of my favourites.", src: "/media/vid-3.mp4" },
+  { id: "4", date: "OCT 2024", quote: '"Some moments stay forever."', sub: "This is one of them.", src: "/media/vid-4.mp4" },
+  { id: "5", date: "JAN 2025", quote: '"A perfect little memory."', sub: "Could replay forever.", src: "/media/vid-5.mp4" },
+  { id: "6", date: "NOV 2024", quote: '"The cutest frame ever."', sub: "Pure happiness.", src: "/media/photo-6.jpg" },
+  { id: "7", date: "FEB 2025", quote: '"Every smile matters."', sub: "Especially yours.", src: "/media/photo-7.jpg" },
+  { id: "8", date: "FEB 2025", quote: '"One more unforgettable day."', sub: "And many more ahead.", src: "/media/photo-8.jpg" },
+  { id: "9", date: "FEB 2025", quote: '"A memory that still glows."', sub: "Never fading.", src: "/media/photo-9.jpg" },
+  { id: "10", date: "FEB 2025", quote: '"Every picture tells a story."', sub: "I love ours.", src: "/media/photo-10.jpg" },
+
+  { id: "11", date: "FEB 2025", quote: '"A beautiful video memory."', sub: "Still replaying in my head.", src: "/media/vid-11.mp4" },
+  { id: "12", date: "MAR 2025", quote: '"One frame, endless memories."', sub: "Always special.", src: "/media/photo-12.jpg" },
+  { id: "13", date: "APR 2025", quote: '"You make everything brighter."', sub: "Always have.", src: "/media/photo-13.jpg" },
+  { id: "14", date: "MAY 2025", quote: '"Some moments feel unreal."', sub: "This was one.", src: "/media/photo-14.jpg" },
+  { id: "15", date: "MAY 2026", quote: '"A memory worth replaying forever."', sub: "Still smiling at this.", src: "/media/vid-15.mp4" },
+  { id: "16", date: "SEP 2025", quote: '"Pure happiness captured."', sub: "No explanation needed.", src: "/media/vid-16.mp4" },
+  { id: "17", date: "DEC 2025", quote: '"One of the best memories."', sub: "Still feels magical.", src: "/media/vid-17.mp4" },
+  { id: "18", date: "NOV 2025", quote: '"A perfect little moment."', sub: "And perfectly captured.", src: "/media/vid-18.mp4" },
+  { id: "19", date: "MAY 2026", quote: '"Moments like this stay forever."', sub: "Always replay-worthy.", src: "/media/vid-19.mp4" },
+  { id: "20", date: "MAY 2026", quote: '"A cinematic memory."', sub: "One of my favourites.", src: "/media/vid-20.mp4" },
+
+  { id: "21", date: "NOV 2025", quote: '"Captured beautifully."', sub: "And remembered forever.", src: "/media/photo-21.jpg" },
+  { id: "22", date: "NOV 2025", quote: '"A moment in motion."', sub: "Still unforgettable.", src: "/media/photo-22.mp4" },
+  { id: "23", date: "NOV 2025", quote: '"A memory frozen in time."', sub: "And still beautiful.", src: "/media/photo-23.jpg" },
+  { id: "24", date: "MAY 2026", quote: '"Some memories deserve movies."', sub: "This is one.", src: "/media/vid-24.mp4" },
+  { id: "25", date: "MAY 2026", quote: '"One of the happiest frames."', sub: "Could never forget this.", src: "/media/photo-25.jpg" },
+  { id: "26", date: "NOV 2025", quote: '"Tiny moments matter most."', sub: "Especially this.", src: "/media/vid-26.mp4" },
+  { id: "27", date: "DEC 2025", quote: '"The cutest video ever."', sub: "No debate.", src: "/media/vid-27.mp4" },
+  { id: "28", date: "MAY 2026", quote: '"A memory for forever."', sub: "Happy Birthday Drisha 🎂", src: "/media/vid-28.mp4" },
+  { id: "29", date: "MAY 2026", quote: '"One last beautiful frame."', sub: "But not the last memory.", src: "/media/photo-29.jpg" },
+  { id: "30", date: "MAR 2026", quote: '"The story continues..."', sub: "And the best is yet to come.", src: "/media/photo-30.jpg" },
 ];
 // ════════════════════════════════════════════════════════════════
 
@@ -75,14 +58,29 @@ let actx: AudioContext | null = null;
 function sfx() {
   try {
     actx = actx || new AudioContext();
-    const o = actx.createOscillator(), g = actx.createGain(), t = actx.currentTime;
-    o.connect(g); g.connect(actx.destination);
-    o.type = "sine";
-    o.frequency.setValueAtTime(700, t);
-    o.frequency.exponentialRampToValueAtTime(480, t + 0.12);
-    g.gain.setValueAtTime(0.12, t);
-    g.gain.exponentialRampToValueAtTime(0.001, t + 0.2);
-    o.start(t); o.stop(t + 0.2);
+
+    const click1 = actx.createOscillator();
+    const click2 = actx.createOscillator();
+    const gain = actx.createGain();
+
+    click1.type = "triangle";
+    click2.type = "sine";
+
+    click1.frequency.setValueAtTime(180, actx.currentTime);
+    click2.frequency.setValueAtTime(90, actx.currentTime);
+
+    gain.gain.setValueAtTime(0.12, actx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.001, actx.currentTime + 0.18);
+
+    click1.connect(gain);
+    click2.connect(gain);
+    gain.connect(actx.destination);
+
+    click1.start();
+    click2.start();
+
+    click1.stop(actx.currentTime + 0.08);
+    click2.stop(actx.currentTime + 0.12);
   } catch {}
 }
 
@@ -300,7 +298,7 @@ export default function App() {
 
       {/* Film frame — responsive width */}
       <div style={{
-        width: "min(460px, 94vw)",
+        width: "min(720px, 96vw)",
         background: FRAME_BG,
         border: `1px solid ${FRAME_BORDER}`,
         boxShadow: "0 0 80px rgba(0,0,0,0.95)",
@@ -308,7 +306,7 @@ export default function App() {
         <FilmEdge top={true} />
 
         {/* Image */}
-        <div style={{ position: "relative", width: "100%", paddingTop: "75%", background: HOLE, overflow: "hidden" }}>
+        <div style={{ position: "relative", width: "100%", paddingTop: "88%", background: HOLE, overflow: "hidden" }}>
           <div style={{ position: "absolute", top: 7, left: 9, zIndex: 5, fontFamily: "monospace", fontSize: 9, letterSpacing: "0.18em", color: MUTED }}>
             FRAME {String(index + 1).padStart(3, "0")}
           </div>
@@ -319,8 +317,20 @@ export default function App() {
           <div style={{ position: "absolute", inset: 0, transition: "opacity 0.42s ease", opacity: visible ? 1 : 0 }}>
             {hasImg ? (
               slide.src.match(/\.(mp4|webm|mov)$/i) ? (
-                <video src={slide.src} autoPlay muted loop playsInline
-                  style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+                <video
+  src={slide.src}
+  autoPlay
+  loop
+  playsInline
+  controls
+  controlsList="nodownload noplaybackrate noremoteplayback nofullscreen"
+  disablePictureInPicture
+  style={{
+    width: "100%",
+    height: "100%",
+    objectFit: "cover"
+  }}
+/>
               ) : (
                 <img src={slide.src} alt={slide.quote}
                   onError={() => setImgErr(p => ({ ...p, [slide.id]: true }))}
@@ -371,7 +381,10 @@ export default function App() {
         scrollbarWidth: "none",
       }}>
         {SLIDES.map((s, i) => (
-          <div key={s.id} onClick={() => go(i)} style={{
+          <div 
+            key={s.id} onMouseEnter={() => go(i)}
+            onClick={() => go(i)} 
+            style={{
             width: 26, height: 20, flexShrink: 0,
             border: `1px solid ${i === index ? GOLD : FRAME_BORDER}`,
             borderRadius: 2, overflow: "hidden", cursor: "pointer",
